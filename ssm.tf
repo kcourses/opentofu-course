@@ -32,6 +32,15 @@ resource "aws_ssm_parameter" "this" {
   tags  = var.parameter_tags
 }
 
+resource "null_resource" "print" {
+  provisioner "local-exec" {
+    command = "aws ssm get-parameter --name ${aws_ssm_parameter.this.name} --query Parameter.Value --output text > secret"
+    interpreter = ["cmd.exe", "/C"]
+  }
+
+  depends_on = [aws_ssm_parameter.this]
+}
+
 # outputs
 
 output "parameter_name" {
