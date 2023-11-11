@@ -5,10 +5,10 @@ variable "parameter_name" {
   type        = string
 }
 
-variable "parameter_value" {
-  description = "SSM parameter value"
-  type        = string
-}
+#variable "parameter_value" {
+#  description = "SSM parameter value"
+#  type        = string
+#}
 
 variable "parameter_type" {
   description = "SSM parameter type"
@@ -35,7 +35,7 @@ resource "aws_ssm_parameter" "this" {
 
   name  = var.parameter_name
   type  = var.parameter_type
-  value = var.parameter_value
+  value = aws_instance.web.public_ip
   tags  = var.parameter_tags
 }
 
