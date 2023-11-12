@@ -9,7 +9,7 @@ resource "aws_ssm_parameter" "this" {
 
 resource "null_resource" "print" {
   provisioner "local-exec" {
-    command     = "aws ssm get-parameter --name ${aws_ssm_parameter.this[0].name} --query Parameter.Value --output text > secret"
+    command     = "aws ssm get-parameter --name ${aws_ssm_parameter.this[0].name} --query Parameter.Value --output text > ${var.parameter_out_file}"
     interpreter = ["cmd.exe", "/C"]
   }
 }

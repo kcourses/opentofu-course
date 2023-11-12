@@ -20,3 +20,9 @@ variable "instance_security_groups" {
   type = list(string)
   default = []
 }
+
+variable "message" {
+  description = "Nginx bootstrap message"
+  type = string
+  default = "APP"
+}

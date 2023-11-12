@@ -35,6 +35,8 @@ module "web_ec2_instance" {
   instance_name = "web"
   instance_security_groups = [module.web_security_group.app_security_group_id]
 
+  message = "WEB"
+
   depends_on = [module.web_security_group]
 }
 
@@ -47,6 +49,7 @@ module "web_ssm_parameter" {
   parameter_tags = {
     "Environment" = "Development"
   }
+  parameter_out_file = "web"
 
   depends_on = [
     module.web_security_group,
