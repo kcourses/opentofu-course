@@ -29,7 +29,7 @@ resource "aws_instance" "this" {
   vpc_security_group_ids = var.instance_security_groups
 
   user_data = data.template_file.bootstrap_data_script.rendered
-#  user_data = file("${path.module}/bootstrap/${var.instance_bootstrap_script}")
+  #  user_data = file("${path.module}/bootstrap/${var.instance_bootstrap_script}")
 
   tags = {
     Name = var.instance_name

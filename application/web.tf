@@ -1,5 +1,5 @@
 module "web_security_group" {
-  source = "./modules/security_group"
+  source = "D:/GolangProjects/opentofu-course/modules/security_group"
 
   app_sg_name        = "web"
   app_sg_description = "Default WEB SG description"
@@ -30,9 +30,9 @@ module "web_security_group" {
 }
 
 module "web_ec2_instance" {
-  source = "./modules/ec2"
+  source = "D:/GolangProjects/opentofu-course/modules/ec2"
 
-  instance_name = "web"
+  instance_name            = "web"
   instance_security_groups = [module.web_security_group.app_security_group_id]
 
   message = "WEB"
@@ -41,11 +41,11 @@ module "web_ec2_instance" {
 }
 
 module "web_ssm_parameter" {
-  source = "./modules/ssm"
+  source = "D:/GolangProjects/opentofu-course/modules/ssm"
 
-  parameter_name = "/setup/web/instance"
+  parameter_name  = "/setup/web/instance"
   parameter_value = module.web_ec2_instance.instance_public_ip
-  parameter_type = "String"
+  parameter_type  = "String"
   parameter_tags = {
     "Environment" = "Development"
   }
@@ -66,6 +66,6 @@ output "web_instance_arn" {
 }
 
 output "web_parameter_value" {
-  value = module.web_ssm_parameter.parameter_value
+  value     = module.web_ssm_parameter.parameter_value
   sensitive = true
 }

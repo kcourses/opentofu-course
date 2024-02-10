@@ -1,0 +1,4 @@
+backend_region: eu-west-1
+
+state_bucket_name: "opentofu-course-state-bucket"
+lock_table_name: "opentofu-course-lock-table"

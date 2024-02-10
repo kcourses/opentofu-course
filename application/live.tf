@@ -1,5 +1,5 @@
 module "live_security_group" {
-  source = "./modules/security_group"
+  source = "D:/GolangProjects/opentofu-course/modules/security_group"
 
   app_sg_name        = "live"
   app_sg_description = "Default LIVE SG description"
@@ -30,9 +30,9 @@ module "live_security_group" {
 }
 
 module "live_ec2_instance" {
-  source = "./modules/ec2"
+  source = "D:/GolangProjects/opentofu-course/modules/ec2"
 
-  instance_name = "live"
+  instance_name            = "live"
   instance_security_groups = [module.live_security_group.app_security_group_id]
 
   message = "LIVE"
@@ -41,11 +41,11 @@ module "live_ec2_instance" {
 }
 
 module "live_ssm_parameter" {
-  source = "./modules/ssm"
+  source = "D:/GolangProjects/opentofu-course/modules/ssm"
 
-  parameter_name = "/setup/live/instance"
+  parameter_name  = "/setup/live/instance"
   parameter_value = module.live_ec2_instance.instance_public_ip
-  parameter_type = "String"
+  parameter_type  = "String"
   parameter_tags = {
     "Environment" = "Production"
   }
@@ -66,6 +66,6 @@ output "live_instance_arn" {
 }
 
 output "live_parameter_value" {
-  value = module.live_ssm_parameter.parameter_value
+  value     = module.live_ssm_parameter.parameter_value
   sensitive = true
 }

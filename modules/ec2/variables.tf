@@ -17,12 +17,12 @@ variable "instance_bootstrap_script" {
 
 variable "instance_security_groups" {
   description = "Instance list of security groups"
-  type = list(string)
-  default = []
+  type        = list(string)
+  default     = []
 }
 
 variable "message" {
   description = "Nginx bootstrap message"
-  type = string
-  default = "APP"
+  type        = string
+  default     = "APP"
 }

@@ -27,6 +27,6 @@ variable "create_parameter" {
 }
 
 variable "parameter_out_file" {
-  type = string
+  type    = string
   default = "secret"
 }
